@@ -1,0 +1,94 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color:whitesmoke;
+    padding: 1.5rem;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+.logo img {
+    width: 150px;  /* Adjust size based on logo dimensions */
+    height: auto;  /* Maintain aspect ratio */
+}
+header .logo h1 {
+    color: white;
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 2rem;
+}
+
+nav ul li a {
+    color:black;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+nav ul li a:hover {
+    background-color: #FFD700; /* Gold color on hover */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Contact Section Styles */
+.contact-info {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.contact-info h2 {
+    font-size: 2rem;
+    color: #008080;
+    margin-bottom: 2rem;
+}
+
+.contact-details {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: #333;
+}
+
+.contact-details p {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-details .icon {
+    width: 24px;  /* Adjusted size for better fit */
+    height: 24px;
+    margin-right: 0.8rem;  /* Reduced margin for better spacing */
+    object-fit: contain;  /* Ensure icons maintain proportions */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #008080;
+    color: white;
+    padding: 1rem;
+ 
+}

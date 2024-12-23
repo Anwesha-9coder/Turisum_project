@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Yeahoo Travel Ticket</title>
+    <link rel="stylesheet" href="css/style3.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Media/Images/logo.png" alt="Yahoo Kolkata logo"> <!-- Ensure this is a transparent PNG -->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="visiting.html">Visiting Places</a></li>
+                <li><a href="hotels.html">Book Hotel & Travel Ticket</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="booking.html">Booking</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="booking-form">
+        <h2>Book Your Travel Ticket</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="aadhaar">Aadhaar Number</label>
+                <input type="text" id="aadhaar" name="aadhaar" placeholder="Enter your Aadhaar number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Travel Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <select id="destination" name="destination" required>
+                    <option value="kolkata">Kolkata</option>   
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="peyment">Make peyment</label>
+                <select id="peyment" name="peyment" required>
+                <option value="UPI">UPI</option>
+                <option value="cash">Cash</option>
+                <option value="Check">Check</option>
+            </select>
+
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn">Book Now</button>
+            </div>
+        </form>
+    </section>
+
+    <footer style="background-color:#008080; color:white; padding:1rem; text-align:center;">
+        <p>&copy; 2024 Yeahoo Kolkata. All Rights Reserved.</p>
+        <div>
+            <a href="privacy.html" style="color:white; text-decoration:none; margin-right:1rem;">Privacy Policy</a>
+            <a href="terms.html" style="color:white; text-decoration:none;">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        var form = document.querySelector("form");
+        form.addEventListener("submit", function(event){
+            event.preventDefault();
+            var name = form.elements["name"].value;
+            var age = form.elements["age"].value;
+            var aadhaar = form.elements["aadhaar"].value;
+            var phone = form.elements["phone"].value;
+            var email = form.elements["email"].value;
+            var date = form.elements["date"].value;
+            var destination = form.elements["destination"].value;
+            var data = "name=" + name + "&age=" + age + "&aadhaar=" + aadhaar + "&phone=" + phone + "&email=" + email + "&date=" + date + "&destination=" + destination;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "submit_booking.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(data);
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
+

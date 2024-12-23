@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up</title>
+    <link rel="stylesheet" href="./css/style8.css">
+</head>
+
+<body>
+    <div class="container right-panel-active">
+        <!-- Sign Up -->
+        <div class="container__form container--signup">
+            <form action="#" class="form" id="form1">
+                <h2 class="form__title">Sign Up</h2>
+                <input type="text" placeholder="User" class="input" id="signupUser" />
+                <input type="password" placeholder="Password" class="input" id="signupPassword" />
+                <button class="btn">Sign Up</button>
+            </form>
+        </div>
+
+        <!-- Sign In -->
+        <div class="container__form container--signin">
+            <form action="#" class="form" id="form2">
+                <h2 class="form__title">Sign In</h2>
+                <input type="text" placeholder="User" class="input" id="signinUser" />
+                <input type="password" placeholder="Password" class="input" id="signinPassword" />
+                <a href="#" class="link" id="forgot">Forgot your password?</a>
+                <button class="btn" id="signInSubmit">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Overlay -->
+        <div class="container__overlay">
+            <div class="overlay">
+                <div class="overlay__panel overlay--left">
+                    <button class="btn" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay__panel overlay--right">
+                    <button class="btn" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let Users = [];
+        const userKey = "users";
+
+        const loadUsers = () => {
+            const usersStr = localStorage.getItem(userKey);
+            if (usersStr) {
+                Users = JSON.parse(usersStr);
+            }
+        };
+
+        const saveUsers = () => {
+            localStorage.setItem(userKey, JSON.stringify(Users));
+        };
+
+        loadUsers();
+
+        const signInBtn = document.getElementById("signIn");
+        const signUpBtn = document.getElementById("signUp");
+        const signInSubmitBtn = document.getElementById("signInSubmit");
+        const fistForm = document.getElementById("form1");
+        const secondForm = document.getElementById("form2");
+        const container = document.querySelector(".container");
+        const forgot = document.getElementById("forgot");
+
+        signInBtn.addEventListener("click", () => {
+            container.classList.remove("right-panel-active");
+        });
+
+        signUpBtn.addEventListener("click", () => {
+            container.classList.add("right-panel-active");
+        });
+
+        fistForm.addEventListener("submit", (e) => e.preventDefault());
+        secondForm.addEventListener("submit", (e) => e.preventDefault());
+
+        const signUpSubmitBtn = document.querySelector("#form1 .btn");
+
+        signUpSubmitBtn.addEventListener("click", () => {
+            const signupUser = document.getElementById("signupUser").value;
+            const signupPassword = document.getElementById("signupPassword").value;
+
+            const newUser = {
+                username: signupUser,
+                password: signupPassword,
+            };
+            Users.push(newUser);
+            saveUsers();
+            // Example signup logic
+            if (signupUser && signupPassword) {
+                alert("Sign up successful!");
+                console.log(`${newUser.username},${newUser.password}`);
+            } else {
+                alert("Please fill in all fields.");
+            }
+        });
+
+        signInSubmitBtn.addEventListener("click", () => {
+            const signinUser = document.getElementById("signinUser").value;
+            const signinPassword = document.getElementById("signinPassword").value;
+
+            let foundUser = null;
+            for (const user of Users) {
+                if (user.username === signinUser && user.password === signinPassword) {
+                    foundUser = user;
+                    break;
+                }
+            }
+
+            // Example check for username and password
+            if (foundUser) {
+                window.location.href = "home.html";
+            } else {
+                alert("Invalid username or password");
+            }
+            console.log(foundUser);
+        });
+
+        forgot.addEventListener("click", () => {
+            const signinUser = document.getElementById("signinUser").value;
+            let foundUser = null;
+            for (const user of Users) {
+                if (user.username === signinUser) {
+                    foundUser = user;
+                    break;
+                }
+            }
+            if (foundUser) {
+                const newPassword = prompt("Enter your new password");
+                if (newPassword) {
+                    foundUser.password = newPassword;
+                    saveUsers();
+                    alert("Password updated successfully!");
+                }
+            } else {
+                alert("User not found");
+            }
+        });
+    </script>
+</body>
+
+</html>
